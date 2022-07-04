@@ -1,0 +1,10 @@
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+src/com/wenhao/ballmove
+src/com/wenhao/draw
+out
+gen
