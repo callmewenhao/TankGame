@@ -8,3 +8,5 @@ src/com/wenhao/ballmove
 src/com/wenhao/draw
 out
 gen
+*.mp4
+*.pptx
