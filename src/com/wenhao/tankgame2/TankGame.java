@@ -7,6 +7,9 @@
 package com.wenhao.tankgame2;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 
 /**
@@ -20,13 +23,27 @@ public class TankGame extends JFrame {
         TankGame tankGame = new TankGame();
     }
 
-    public TankGame(){
+    public TankGame() {
         this.mp = new MyPanel();
         new Thread(mp).start(); // repaint thread
         this.add(mp);
         this.addKeyListener(mp); // listen to the Key pressed!
-        this.setSize(1200, 900);
+        this.setSize(1300, 900);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+
+        // listen to close window
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                try {
+                    Recorder.saveRecord();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
     }
 }

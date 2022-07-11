@@ -65,7 +65,7 @@ public class Bomb implements Runnable{
     public void run() {
         while(isLive) {
             try {
-                Thread.sleep(100); // each 100ms
+                Thread.sleep(50); // each 50ms
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

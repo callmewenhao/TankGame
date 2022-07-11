@@ -26,6 +26,27 @@ public class Tank {
 
     TankType tankType;
 
+    // tank change to reverse direction
+    public void changeDirection() {
+        direction = (int) (Math.random() * 4); // change direction randomly
+    }
+
+    // judge whether the tanks overlap
+    public boolean overlap(Tank t) {
+
+        if(t.getX() <= this.getX() && this.getX() <= t.getX() + 60) {
+            if(t.getY() <= this.getY() && this.getY() <= t.getY() + 60) return true; // left top point
+            if(t.getY() <= this.getY() + 60 && this.getY() + 60 <= t.getY() + 60) return true; // left bottom point
+        }
+
+        if(t.getX() <= this.getX() + 60 && this.getX() + 60 <= t.getX() + 60) {
+            if(t.getY() <= this.getY() && this.getY() <= t.getY() + 60) return true; // right top point
+            if(t.getY() <= this.getY() + 60 && this.getY() + 60 <= t.getY() + 60) return true; // right bottom point
+        }
+
+        return false;
+    }
+
     // move up down left right
     public void moveUp() {
         y -= speed;
@@ -47,17 +68,17 @@ public class Tank {
     public void shotOtherTank() {
         Bullet bullet = null;
         switch(this.getDirection()) {
-            case 0:
-                bullet = new Bullet(this.getX() + 20, this.getY(), 0);
+            case 0: // up
+                bullet = new Bullet(this.getX() + 30, this.getY(), 0);
                 break;
-            case 1:
-                bullet = new Bullet(this.getX() + 60, this.getY() + 20, 1);
+            case 1: // right
+                bullet = new Bullet(this.getX() + 60, this.getY() + 30, 1);
                 break;
-            case 2:
-                bullet = new Bullet(this.getX() + 20, this.getY() + 60, 2);
+            case 2: // down
+                bullet = new Bullet(this.getX() + 30, this.getY() + 60, 2);
                 break;
-            case 3:
-                bullet = new Bullet(this.getX(), this.getY() + 20, 3);
+            case 3: // left
+                bullet = new Bullet(this.getX(), this.getY() + 30, 3);
                 break;
             default:
                 System.out.println("bug!!!");
